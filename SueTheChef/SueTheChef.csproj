@@ -68,6 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\bbs-ch-r.jpg" />
+    <Content Include="Images\konig-ampliform.jpg" />
+    <Content Include="Images\method-mr305-nv.jpg" />
+    <Content Include="Images\rotiform-las-r.jpg" />
+    <Content Include="Images\volk-racing-te37sl.jpg" />
+    <Content Include="Images\yokohama-advan-apex-v601.jpg" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Shop.aspx" />
