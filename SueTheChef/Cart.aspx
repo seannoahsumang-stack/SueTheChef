@@ -16,10 +16,11 @@
     <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
         <ItemTemplate>
             <article class="kr-cart-row">
-                <div class="kr-cart-img">
+                <div class="kr-cart-img" style="width:88px;height:64px;overflow:hidden;">
                     <asp:Image ID="imgCartProduct" runat="server" CssClass="kr-cart-photo"
                         ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("ProductType")) %>'
-                        AlternateText='<%# Eval("ProductName") + " product image" %>' />
+                        AlternateText='<%# Eval("ProductName") + " product image" %>'
+                        Style="width:100%;height:100%;display:block;object-fit:cover;" />
                 </div>
                 <div class="kr-cart-main">
                     <h2 class="kr-cart-title"><%# Eval("ProductName") %></h2>
