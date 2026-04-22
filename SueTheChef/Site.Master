@@ -1,0 +1,43 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="SueTheChef.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">Keep Rollin Co</asp:ContentPlaceHolder></title>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Styles/keep-rollin.css") %>" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="kr-body">
+    <form id="formMain" runat="server">
+        <header class="kr-header">
+            <div class="kr-header-inner">
+                <asp:HyperLink ID="lnkLogo" runat="server" CssClass="kr-logo" NavigateUrl="~/Default.aspx" Text="Keep Rollin Co" ToolTip="Keep Rollin Co home" />
+                <nav class="kr-nav" aria-label="Primary">
+                    <asp:HyperLink ID="lnkHome" runat="server" CssClass="kr-nav-link" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
+                    <asp:HyperLink ID="lnkProducts" runat="server" CssClass="kr-nav-link" NavigateUrl="~/Shop.aspx">Products</asp:HyperLink>
+                    <asp:HyperLink ID="lnkSchedule" runat="server" CssClass="kr-nav-link" NavigateUrl="~/Schedule.aspx">Schedule</asp:HyperLink>
+                    <asp:HyperLink ID="lnkCart" runat="server" CssClass="kr-nav-link kr-nav-cart" NavigateUrl="~/Cart.aspx">Cart</asp:HyperLink>
+                </nav>
+                <div class="kr-header-meta">
+                    <asp:Literal ID="litSessionCustomer" runat="server" Mode="PassThrough" />
+                </div>
+            </div>
+        </header>
+
+        <main class="kr-main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <footer class="kr-footer">
+            <div class="kr-footer-inner">
+                <span class="kr-footer-brand">Keep Rollin Co</span>
+                <span class="kr-footer-note">Tires, wheels &amp; service — built for the road ahead.</span>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
