@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\bbs-ch-r.jpg" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Shop.aspx" />
