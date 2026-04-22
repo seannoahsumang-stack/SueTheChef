@@ -19,22 +19,22 @@
 
     <asp:SqlDataSource ID="dsProductTypes" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT DISTINCT ProductType AS Type FROM PRODUCTS WHERE ProductType IS NOT NULL AND LTRIM(RTRIM(ProductType)) &lt;&gt; '' ORDER BY ProductType">
+        SelectCommand="SELECT DISTINCT CAST(ProductType AS NVARCHAR(100)) AS Type FROM PRODUCTS WHERE ProductType IS NOT NULL AND LTRIM(RTRIM(CAST(ProductType AS NVARCHAR(100)))) &lt;&gt; '' ORDER BY CAST(ProductType AS NVARCHAR(100))">
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="dsTireSizes" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT DISTINCT Specs AS Size FROM PRODUCTS WHERE CHARINDEX(N'tire', LOWER(ISNULL(ProductType, N''))) &gt; 0 AND Specs IS NOT NULL AND LTRIM(RTRIM(Specs)) &lt;&gt; '' ORDER BY Specs">
+        SelectCommand="SELECT DISTINCT CAST(Specs AS NVARCHAR(100)) AS Size FROM PRODUCTS WHERE CHARINDEX(N'tire', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) &gt; 0 AND Specs IS NOT NULL AND LTRIM(RTRIM(CAST(Specs AS NVARCHAR(100)))) &lt;&gt; '' ORDER BY CAST(Specs AS NVARCHAR(100))">
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="dsWheelSizes" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT DISTINCT Specs AS Size FROM PRODUCTS WHERE CHARINDEX(N'wheel', LOWER(ISNULL(ProductType, N''))) &gt; 0 AND Specs IS NOT NULL AND LTRIM(RTRIM(Specs)) &lt;&gt; '' ORDER BY Specs">
+        SelectCommand="SELECT DISTINCT CAST(Specs AS NVARCHAR(100)) AS Size FROM PRODUCTS WHERE CHARINDEX(N'wheel', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) &gt; 0 AND Specs IS NOT NULL AND LTRIM(RTRIM(CAST(Specs AS NVARCHAR(100)))) &lt;&gt; '' ORDER BY CAST(Specs AS NVARCHAR(100))">
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="dsProducts" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, ProductType AS Type, Specs AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE (@ProductType = '' OR ProductType = @ProductType) AND ((CHARINDEX(N'tire', LOWER(ISNULL(ProductType, N''))) = 0) OR (@TireSize = '') OR (Specs = @TireSize)) AND ((CHARINDEX(N'wheel', LOWER(ISNULL(ProductType, N''))) = 0) OR (@WheelSize = '') OR (Specs = @WheelSize)) ORDER BY ProductName">
+        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, CAST(ProductType AS NVARCHAR(100)) AS Type, CAST(Specs AS NVARCHAR(100)) AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE (@ProductType = '' OR CAST(ProductType AS NVARCHAR(100)) = @ProductType) AND ((CHARINDEX(N'tire', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) = 0) OR (@TireSize = '') OR (CAST(Specs AS NVARCHAR(100)) = @TireSize)) AND ((CHARINDEX(N'wheel', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) = 0) OR (@WheelSize = '') OR (CAST(Specs AS NVARCHAR(100)) = @WheelSize)) ORDER BY ProductName">
         <SelectParameters>
             <asp:ControlParameter Name="ProductType" ControlID="ddlProductType" PropertyName="SelectedValue" Type="String" DefaultValue="" ConvertEmptyStringToNull="false" />
             <asp:ControlParameter Name="TireSize" ControlID="ddlTireSize" PropertyName="SelectedValue" Type="String" DefaultValue="" ConvertEmptyStringToNull="false" />
