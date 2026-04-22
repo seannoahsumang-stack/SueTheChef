@@ -63,7 +63,7 @@ namespace SueTheChef
         void BindPage()
         {
             litCheckoutError.Visible = false;
-            var cart = RollinCart.GetCart(Session);
+            var cart = RollinCart.GetCart();
             if (cart.Count == 0)
             {
                 pnlEmpty.Visible = true;
@@ -112,7 +112,7 @@ namespace SueTheChef
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             litCheckoutError.Visible = false;
-            var cart = RollinCart.GetCart(Session);
+            var cart = RollinCart.GetCart();
             if (cart.Count == 0)
             {
                 BindPage();
@@ -185,7 +185,7 @@ VALUES (@OrderID, @ProductID, @Quantity, @PriceAtPurchase)", conn, tran))
                             }
 
                             tran.Commit();
-                            RollinCart.Clear(Session);
+                            RollinCart.Clear();
                             Response.Redirect("~/OrderConfirmation.aspx?OrderID=" + orderId);
                         }
                         catch

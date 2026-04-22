@@ -21,13 +21,13 @@ namespace SueTheChef
             if (!int.TryParse(Convert.ToString(e.CommandArgument), out productId))
                 return;
 
-            var cart = RollinCart.GetCart(Session);
+            var cart = RollinCart.GetCart();
             int qty = cart.ContainsKey(productId) ? cart[productId] : 0;
 
             if (e.CommandName == "Minus")
-                RollinCart.SetQuantity(Session, productId, qty - 1);
+                RollinCart.SetQuantity(productId, qty - 1);
             else if (e.CommandName == "Plus")
-                RollinCart.SetQuantity(Session, productId, qty + 1);
+                RollinCart.SetQuantity(productId, qty + 1);
 
             BindCart();
         }
@@ -35,7 +35,7 @@ namespace SueTheChef
         void BindCart()
         {
             litCartMessage.Visible = false;
-            var cart = RollinCart.GetCart(Session);
+            var cart = RollinCart.GetCart();
             var lines = new List<CartLineVm>();
             string cs = ConfigurationManager.ConnectionStrings["RollinCoConnectionString"].ConnectionString;
 

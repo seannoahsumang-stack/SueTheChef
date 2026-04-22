@@ -15,7 +15,7 @@ namespace SueTheChef
             if (e.CommandName != "AddToCart") return;
             int productId;
             if (!int.TryParse(Convert.ToString(e.CommandArgument), out productId) || productId <= 0) return;
-            RollinCart.Add(Session, productId, 1);
+            RollinCart.Add(productId, 1);
             Response.Redirect("~/Cart.aspx");
         }
     }
