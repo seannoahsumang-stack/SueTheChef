@@ -14,7 +14,7 @@
     </asp:SqlDataSource>
 
     <asp:Panel ID="pnlOk" runat="server" CssClass="kr-confirm-wrap">
-        <p class="kr-confirm-status">✓ Appointment scheduled</p>
+        <p class="kr-confirm-status"><span class="kr-status-check" aria-hidden="true"></span> Appointment scheduled</p>
 
         <asp:FormView ID="fvAppt" runat="server" DataSourceID="dsAppointment" RenderOuterTable="false">
             <ItemTemplate>

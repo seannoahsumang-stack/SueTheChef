@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Wheel placeholder image">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#171a24"/>
+      <stop offset="100%" style="stop-color:#0a0c11"/>
+    </linearGradient>
+    <radialGradient id="rim" cx="50%" cy="50%" r="52%">
+      <stop offset="0%" style="stop-color:#d4dbef"/>
+      <stop offset="45%" style="stop-color:#a7b2d4"/>
+      <stop offset="100%" style="stop-color:#6c7798"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="215" fill="#10141e" stroke="#8793b6" stroke-width="4"/>
+  <circle cx="400" cy="300" r="165" fill="url(#rim)" stroke="#dfe6fa" stroke-width="3"/>
+  <circle cx="400" cy="300" r="56" fill="#131925" stroke="#c6d2f5" stroke-width="2"/>
+  <g fill="#8f9bc0" opacity="0.9">
+    <polygon points="400,122 430,250 400,278 370,250"/>
+    <polygon points="578,300 450,330 422,300 450,270"/>
+    <polygon points="400,478 430,350 400,322 370,350"/>
+    <polygon points="222,300 350,330 378,300 350,270"/>
+    <polygon points="526,174 448,280 412,270 446,238"/>
+    <polygon points="274,426 352,320 388,330 354,362"/>
+    <polygon points="274,174 352,280 388,270 354,238"/>
+    <polygon points="526,426 448,320 412,330 446,362"/>
+  </g>
+  <text x="400" y="535" text-anchor="middle" fill="#b7c3e8" font-family="Segoe UI,sans-serif" font-size="28" letter-spacing="2">ALLOY WHEEL</text>
+</svg>

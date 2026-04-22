@@ -439,22 +439,22 @@
 .kr-hero-visual {
     max-width: 720px;
     margin: 0 auto 1.75rem;
-    min-height: 200px;
+    min-height: 220px;
+    max-height: 380px;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    background:
-        linear-gradient(135deg, rgba(40, 45, 65, 0.45) 0%, rgba(12, 13, 18, 0.9) 60%),
-        radial-gradient(circle at 30% 40%, rgba(130, 150, 220, 0.18), transparent 55%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    background: rgba(12, 13, 18, 0.5);
 }
 
-.kr-hero-visual-label {
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #7d869d;
+.kr-hero-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    max-height: 380px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .kr-hero-tagline {
@@ -514,6 +514,7 @@
 .kr-product-row-img {
     width: 96px;
     height: 72px;
+    overflow: hidden;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(30, 32, 42, 0.9);
@@ -522,11 +523,11 @@
     justify-content: center;
 }
 
-.kr-product-row-img-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #6f788f;
+.kr-product-row-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .kr-product-row-main {
@@ -589,20 +590,13 @@
 }
 
 .kr-detail-img {
+    width: 100%;
     min-height: 280px;
+    object-fit: cover;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: linear-gradient(160deg, rgba(36, 38, 48, 0.95), rgba(12, 13, 18, 0.98));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.kr-detail-img-label {
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #7d869d;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
 
 .kr-detail-title {
@@ -711,6 +705,10 @@
 }
 
 .kr-panel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
     margin-top: 1.25rem;
 }
 
@@ -727,6 +725,18 @@
 .kr-confirm-wrap {
     max-width: 720px;
     margin: 0 auto;
+}
+
+/* CSS checkmark (no Unicode) — avoids mojibake if encoding mismatches */
+.kr-status-check {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.85em;
+    margin-right: 0.35em;
+    border-right: 0.14em solid #c8f0d8;
+    border-bottom: 0.14em solid #c8f0d8;
+    transform: rotate(45deg) translateY(-0.08em);
+    vertical-align: middle;
 }
 
 .kr-confirm-status {
@@ -1023,4 +1033,149 @@
     font-size: 1.35rem;
     font-weight: 700;
     color: #eef1ff;
+}
+
+/* Auth & account */
+.kr-auth-panel {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kr-auth-lead {
+    max-width: 560px;
+    margin: 0 auto 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #9aa3b8;
+    line-height: 1.55;
+}
+
+.kr-auth-lead code {
+    font-size: 0.82em;
+    color: #c8d0e8;
+}
+
+.kr-auth-foot {
+    margin: 1.25rem 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #8b94a8;
+}
+
+.kr-auth-hint {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    color: #7d869d;
+    line-height: 1.45;
+}
+
+.kr-validation-summary {
+    max-width: 520px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 180, 120, 0.25);
+    background: rgba(255, 120, 60, 0.08);
+    color: #e8c4a8;
+    font-size: 0.88rem;
+}
+
+.kr-block-error {
+    display: block;
+    max-width: 520px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 100, 100, 0.35);
+    background: rgba(200, 60, 60, 0.12);
+    color: #ffb4b4;
+}
+
+.kr-block-success {
+    display: block;
+    max-width: 520px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(120, 200, 140, 0.35);
+    background: rgba(60, 140, 80, 0.12);
+    color: #b8e8c8;
+}
+
+.kr-success-panel {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.kr-success-lead {
+    font-size: 1.05rem;
+    color: #c9ced9;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+}
+
+.kr-success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 0;
+}
+
+.kr-session-name {
+    color: #d4daf0;
+    font-weight: 600;
+}
+
+.kr-session-sep {
+    opacity: 0.5;
+    padding: 0 0.15rem;
+}
+
+.kr-subheading {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #aeb6c9;
+}
+
+.kr-subheading-spaced {
+    margin-top: 1.75rem;
+}
+
+.kr-danger-panel {
+    max-width: 520px;
+    margin: 2rem auto 0;
+    border-color: rgba(255, 100, 100, 0.22);
+    background: rgba(80, 30, 30, 0.2);
+}
+
+.kr-danger-text {
+    margin: 0 0 1rem;
+    color: #e8b8b8;
+    line-height: 1.55;
+}
+
+.kr-checkbox-field {
+    margin-top: 0.5rem;
+}
+
+.kr-checkbox {
+    color: #c9ced9;
+}
+
+.kr-btn-danger {
+    background: linear-gradient(180deg, #a03030 0%, #702020 100%);
+    border: 1px solid rgba(255, 120, 120, 0.35);
+    color: #fff;
+}
+
+.kr-btn-danger:hover {
+    background: linear-gradient(180deg, #c03838 0%, #882828 100%);
+    border-color: rgba(255, 160, 160, 0.45);
 }

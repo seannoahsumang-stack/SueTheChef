@@ -144,7 +144,6 @@ namespace SueTheChef
                     decimal total = RollinCart.GetSubtotal(conn, cart);
 
                     int customerId = CustomerHelper.EnsureCustomer(conn, name, email, string.Empty);
-                    Session[SiteMaster.SessionCustomerIdKey] = customerId;
 
                     using (var tran = conn.BeginTransaction())
                     {

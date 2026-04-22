@@ -55,7 +55,6 @@ namespace SueTheChef
                 {
                     conn.Open();
                     int customerId = CustomerHelper.EnsureCustomer(conn, name, email, phone);
-                    Session[SiteMaster.SessionCustomerIdKey] = customerId;
 
                     using (var up = new SqlCommand(
                         @"UPDATE CUSTOMERS SET VehicleInfo = @VehicleInfo,

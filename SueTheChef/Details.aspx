@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:SqlDataSource ID="dsProduct" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, ProductType AS Type, Specs AS Size FROM PRODUCTS WHERE ProductID = @ProductID">
+        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, ProductType AS Type, Specs AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE ProductID = @ProductID">
         <SelectParameters>
             <asp:QueryStringParameter Name="ProductID" QueryStringField="ID" Type="Int32" DefaultValue="0" />
         </SelectParameters>
@@ -18,9 +18,9 @@
         <ItemTemplate>
             <div class="kr-detail-grid">
                 <div class="kr-detail-media">
-                    <div class="kr-detail-img" role="img" aria-label="Product image placeholder">
-                        <span class="kr-detail-img-label">Product image</span>
-                    </div>
+                    <asp:Image ID="imgDetail" runat="server" CssClass="kr-detail-img"
+                        ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
+                        AlternateText='<%# Eval("Name") + " product image" %>' />
                 </div>
                 <div class="kr-detail-info">
                     <h1 class="kr-detail-title"><%# Eval("Name") %></h1>

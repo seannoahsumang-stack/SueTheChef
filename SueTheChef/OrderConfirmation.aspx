@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="pnlOk" runat="server" CssClass="kr-confirm-wrap" Visible="false">
-        <p class="kr-confirm-status">✔ Order confirmed</p>
+        <p class="kr-confirm-status"><span class="kr-status-check" aria-hidden="true"></span> Order confirmed</p>
 
         <section class="kr-summary-panel" aria-labelledby="items-heading">
             <h2 id="items-heading" class="kr-summary-heading">Order items</h2>

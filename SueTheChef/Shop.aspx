@@ -34,7 +34,7 @@
 
     <asp:SqlDataSource ID="dsProducts" runat="server"
         ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
-        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, ProductType AS Type, Specs AS Size FROM PRODUCTS WHERE (@ProductType = '' OR ProductType = @ProductType) AND ((CHARINDEX(N'tire', LOWER(ISNULL(ProductType, N''))) = 0) OR (@TireSize = '') OR (Specs = @TireSize)) AND ((CHARINDEX(N'wheel', LOWER(ISNULL(ProductType, N''))) = 0) OR (@WheelSize = '') OR (Specs = @WheelSize)) ORDER BY ProductName">
+        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, ProductType AS Type, Specs AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE (@ProductType = '' OR ProductType = @ProductType) AND ((CHARINDEX(N'tire', LOWER(ISNULL(ProductType, N''))) = 0) OR (@TireSize = '') OR (Specs = @TireSize)) AND ((CHARINDEX(N'wheel', LOWER(ISNULL(ProductType, N''))) = 0) OR (@WheelSize = '') OR (Specs = @WheelSize)) ORDER BY ProductName">
         <SelectParameters>
             <asp:ControlParameter Name="ProductType" ControlID="ddlProductType" PropertyName="SelectedValue" Type="String" DefaultValue="" ConvertEmptyStringToNull="false" />
             <asp:ControlParameter Name="TireSize" ControlID="ddlTireSize" PropertyName="SelectedValue" Type="String" DefaultValue="" ConvertEmptyStringToNull="false" />
@@ -81,11 +81,13 @@
     </asp:Panel>
 
     <div class="kr-product-list">
-        <asp:Repeater ID="rptProducts" runat="server" DataSourceID="dsProducts" OnDataBinding="rptProducts_DataBinding" OnDataBound="rptProducts_DataBound">
+        <asp:Repeater ID="rptProducts" runat="server" DataSourceID="dsProducts">
             <ItemTemplate>
                 <article class="kr-product-row">
-                    <div class="kr-product-row-img" aria-hidden="true">
-                        <span class="kr-product-row-img-label">Img</span>
+                    <div class="kr-product-row-img">
+                        <asp:Image ID="imgProduct" runat="server" CssClass="kr-product-row-photo"
+                            ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
+                            AlternateText='<%# Eval("Name") + " product image" %>' />
                     </div>
                     <div class="kr-product-row-main">
                         <div class="kr-product-row-meta"><%# Eval("Type") %> · <%# Eval("Size") %></div>

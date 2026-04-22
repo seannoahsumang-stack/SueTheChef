@@ -18,5 +18,26 @@ namespace SueTheChef
             RollinCart.Add(productId, 1);
             Response.Redirect("~/Cart.aspx");
         }
+
+        public string GetProductImageUrl(object imageUrlObj, object typeObj)
+        {
+            string imageUrl = Convert.ToString(imageUrlObj);
+            if (!string.IsNullOrWhiteSpace(imageUrl))
+            {
+                imageUrl = imageUrl.Trim();
+                if (imageUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                    || imageUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                    return imageUrl;
+                if (imageUrl.StartsWith("~/", StringComparison.Ordinal))
+                    return ResolveUrl(imageUrl);
+                if (imageUrl.StartsWith("/", StringComparison.Ordinal))
+                    return imageUrl;
+                return ResolveUrl("~/" + imageUrl.TrimStart('/'));
+            }
+
+            string type = Convert.ToString(typeObj);
+            bool isWheel = type != null && type.IndexOf("wheel", StringComparison.OrdinalIgnoreCase) >= 0;
+            return ResolveUrl(isWheel ? "~/Images/wheel-placeholder.svg" : "~/Images/tire-placeholder.svg");
+        }
     }
 }
