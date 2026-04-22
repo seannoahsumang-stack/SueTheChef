@@ -8,7 +8,7 @@
     <section class="kr-hero" aria-labelledby="hero-heading">
         <div class="kr-hero-visual">
             <%-- Default: hero.svg. Swap file or set src to ~/Images/hero.jpg or any full URL. --%>
-            <img class="kr-hero-photo" src="<%= ResolveUrl("~/Images/hero.svg") %>" alt="Keep Rollin Co — tires and wheels" />
+            <img class="kr-hero-photo" src="<%= ResolveUrl("~/Images/hero.jpg") %>" alt="Keep Rollin Co — tires and wheels" />
         </div>
         <h1 id="hero-heading" class="kr-hero-title">Keep Rollin Co</h1>
         <p class="kr-hero-tagline">Performance meets poise — gear, service, and a look that stays on the road.</p>
