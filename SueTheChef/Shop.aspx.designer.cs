@@ -16,6 +16,10 @@ namespace SueTheChef
 
         protected global::System.Web.UI.WebControls.SqlDataSource dsProducts;
 
+        protected global::System.Web.UI.WebControls.SqlDataSource dsTiresAll;
+
+        protected global::System.Web.UI.WebControls.SqlDataSource dsWheelsAll;
+
         protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
 
         protected global::System.Web.UI.WebControls.DropDownList ddlTireSize;
@@ -23,6 +27,14 @@ namespace SueTheChef
         protected global::System.Web.UI.WebControls.DropDownList ddlWheelSize;
 
         protected global::System.Web.UI.WebControls.Button btnApplyFilters;
+
+        protected global::System.Web.UI.WebControls.Panel pnlBrowseAll;
+
+        protected global::System.Web.UI.WebControls.Repeater rptTires;
+
+        protected global::System.Web.UI.WebControls.Repeater rptWheels;
+
+        protected global::System.Web.UI.WebControls.Panel pnlFilteredResults;
 
         protected global::System.Web.UI.WebControls.Panel pnlEmpty;
 

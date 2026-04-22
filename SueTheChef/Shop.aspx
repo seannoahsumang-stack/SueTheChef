@@ -42,6 +42,16 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
+    <asp:SqlDataSource ID="dsTiresAll" runat="server"
+        ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
+        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, CAST(ProductType AS NVARCHAR(100)) AS Type, CAST(Specs AS NVARCHAR(100)) AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE CHARINDEX(N'tire', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) &gt; 0 ORDER BY ProductName">
+    </asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="dsWheelsAll" runat="server"
+        ConnectionString="<%$ ConnectionStrings:RollinCoConnectionString %>"
+        SelectCommand="SELECT ProductID AS ID, ProductName AS Name, Description, Price, CAST(ProductType AS NVARCHAR(100)) AS Type, CAST(Specs AS NVARCHAR(100)) AS Size, ImageURL AS ImageUrl FROM PRODUCTS WHERE CHARINDEX(N'wheel', LOWER(CAST(ISNULL(ProductType, N'') AS NVARCHAR(100)))) &gt; 0 ORDER BY ProductName">
+    </asp:SqlDataSource>
+
     <div class="kr-filters">
         <p class="kr-filters-label">Filters:</p>
         <div class="kr-filters-row">
@@ -76,29 +86,79 @@
         </div>
     </div>
 
-    <asp:Panel ID="pnlEmpty" runat="server" CssClass="kr-empty" Visible="false">
-        No products match these filters. Try widening your selections.
+    <asp:Panel ID="pnlBrowseAll" runat="server">
+        <h2 class="kr-subheading">Tires</h2>
+        <div class="kr-product-list">
+            <asp:Repeater ID="rptTires" runat="server" DataSourceID="dsTiresAll">
+                <ItemTemplate>
+                    <article class="kr-product-row">
+                        <div class="kr-product-row-img">
+                            <asp:Image ID="imgTire" runat="server" CssClass="kr-product-row-photo"
+                                ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
+                                AlternateText='<%# Eval("Name") + " product image" %>' />
+                        </div>
+                        <div class="kr-product-row-main">
+                            <div class="kr-product-row-meta"><%# Eval("Type") %> · <%# Eval("Size") %></div>
+                            <h2 class="kr-product-row-title"><%# Eval("Name") %></h2>
+                            <div class="kr-product-row-price"><%# Eval("Price", "{0:c}") %></div>
+                        </div>
+                        <div class="kr-product-row-actions">
+                            <asp:HyperLink ID="lnkViewTire" runat="server" CssClass="kr-btn kr-btn-view" NavigateUrl='<%# ResolveUrl("~/Details.aspx?ID=" + Eval("ID")) %>'>View</asp:HyperLink>
+                        </div>
+                    </article>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+        <h2 class="kr-subheading kr-subheading-spaced">Wheels</h2>
+        <div class="kr-product-list">
+            <asp:Repeater ID="rptWheels" runat="server" DataSourceID="dsWheelsAll">
+                <ItemTemplate>
+                    <article class="kr-product-row">
+                        <div class="kr-product-row-img">
+                            <asp:Image ID="imgWheel" runat="server" CssClass="kr-product-row-photo"
+                                ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
+                                AlternateText='<%# Eval("Name") + " product image" %>' />
+                        </div>
+                        <div class="kr-product-row-main">
+                            <div class="kr-product-row-meta"><%# Eval("Type") %> · <%# Eval("Size") %></div>
+                            <h2 class="kr-product-row-title"><%# Eval("Name") %></h2>
+                            <div class="kr-product-row-price"><%# Eval("Price", "{0:c}") %></div>
+                        </div>
+                        <div class="kr-product-row-actions">
+                            <asp:HyperLink ID="lnkViewWheel" runat="server" CssClass="kr-btn kr-btn-view" NavigateUrl='<%# ResolveUrl("~/Details.aspx?ID=" + Eval("ID")) %>'>View</asp:HyperLink>
+                        </div>
+                    </article>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </asp:Panel>
 
-    <div class="kr-product-list">
-        <asp:Repeater ID="rptProducts" runat="server" DataSourceID="dsProducts">
-            <ItemTemplate>
-                <article class="kr-product-row">
-                    <div class="kr-product-row-img">
-                        <asp:Image ID="imgProduct" runat="server" CssClass="kr-product-row-photo"
-                            ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
-                            AlternateText='<%# Eval("Name") + " product image" %>' />
-                    </div>
-                    <div class="kr-product-row-main">
-                        <div class="kr-product-row-meta"><%# Eval("Type") %> · <%# Eval("Size") %></div>
-                        <h2 class="kr-product-row-title"><%# Eval("Name") %></h2>
-                        <div class="kr-product-row-price"><%# Eval("Price", "{0:c}") %></div>
-                    </div>
-                    <div class="kr-product-row-actions">
-                        <asp:HyperLink ID="lnkView" runat="server" CssClass="kr-btn kr-btn-view" NavigateUrl='<%# ResolveUrl("~/Details.aspx?ID=" + Eval("ID")) %>'>View</asp:HyperLink>
-                    </div>
-                </article>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
+    <asp:Panel ID="pnlFilteredResults" runat="server" Visible="false">
+        <asp:Panel ID="pnlEmpty" runat="server" CssClass="kr-empty" Visible="false">
+            No products match these filters. Try widening your selections.
+        </asp:Panel>
+
+        <div class="kr-product-list">
+            <asp:Repeater ID="rptProducts" runat="server" DataSourceID="dsProducts">
+                <ItemTemplate>
+                    <article class="kr-product-row">
+                        <div class="kr-product-row-img">
+                            <asp:Image ID="imgProduct" runat="server" CssClass="kr-product-row-photo"
+                                ImageUrl='<%# GetProductImageUrl(Eval("ImageUrl"), Eval("Type")) %>'
+                                AlternateText='<%# Eval("Name") + " product image" %>' />
+                        </div>
+                        <div class="kr-product-row-main">
+                            <div class="kr-product-row-meta"><%# Eval("Type") %> · <%# Eval("Size") %></div>
+                            <h2 class="kr-product-row-title"><%# Eval("Name") %></h2>
+                            <div class="kr-product-row-price"><%# Eval("Price", "{0:c}") %></div>
+                        </div>
+                        <div class="kr-product-row-actions">
+                            <asp:HyperLink ID="lnkView" runat="server" CssClass="kr-btn kr-btn-view" NavigateUrl='<%# ResolveUrl("~/Details.aspx?ID=" + Eval("ID")) %>'>View</asp:HyperLink>
+                        </div>
+                    </article>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </asp:Panel>
 </asp:Content>

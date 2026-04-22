@@ -8,16 +8,30 @@ namespace SueTheChef
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                pnlBrowseAll.Visible = true;
+                pnlFilteredResults.Visible = false;
+            }
         }
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            if (!pnlFilteredResults.Visible)
+            {
+                pnlEmpty.Visible = false;
+                rptProducts.Visible = false;
+                return;
+            }
+
             pnlEmpty.Visible = rptProducts.Items.Count == 0;
             rptProducts.Visible = rptProducts.Items.Count > 0;
         }
 
         protected void btnApplyFilters_Click(object sender, EventArgs e)
         {
+            pnlBrowseAll.Visible = false;
+            pnlFilteredResults.Visible = true;
             rptProducts.DataBind();
         }
 
