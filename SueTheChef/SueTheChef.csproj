@@ -67,18 +67,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\bbs-ch-r.jpg" />
-    <Content Include="Images\bridgestone-blizzak-ws90.jpg" />
-    <Content Include="Images\continental-dws06-plus.jpg" />
-    <Content Include="Images\enkei-rfp1-alloy.jpg" />
-    <Content Include="Images\falken-azenis-fk510.jpg" />
-    <Content Include="Images\goodyear-eagle-f1-asymmetric-6.jpg" />
-    <Content Include="Images\konig-ampliform.jpg" />
-    <Content Include="Images\method-mr305-nv.jpg" />
-    <Content Include="Images\michelin-pilot-sport-4s.jpg" />
-    <Content Include="Images\rotiform-las-r.jpg" />
-    <Content Include="Images\volk-racing-te37sl.jpg" />
-    <Content Include="Images\yokohama-advan-apex-v601.jpg" />
+    <Content Include="Images\hero.jpg" />
+    <Content Include="Images\products\bbs-ch-r.jpg" />
+    <Content Include="Images\products\bridgestone-blizzak-ws90.jpg" />
+    <Content Include="Images\products\continental-dws06-plus.jpg" />
+    <Content Include="Images\products\enkei-rpf1-alloy.jpg" />
+    <Content Include="Images\products\falken-azenis-fk510.jpg" />
+    <Content Include="Images\products\goodyear-eagle-f1-asymmetric-6.jpg" />
+    <Content Include="Images\products\konig-ampliform.jpg" />
+    <Content Include="Images\products\method-mr305-nv.jpg" />
+    <Content Include="Images\products\michelin-pilot-sport-4s.jpg" />
+    <Content Include="Images\products\rotiform-las-r.jpg" />
+    <Content Include="Images\products\volk-racing-te37sl.jpg" />
+    <Content Include="Images\products\yokohama-advan-apex-v601.jpg" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Shop.aspx" />
