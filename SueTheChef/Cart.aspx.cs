@@ -45,7 +45,7 @@ namespace SueTheChef
                 foreach (var kv in cart)
                 {
                     using (var cmd = new SqlCommand(
-                        "SELECT ProductName, Price FROM PRODUCTS WHERE ProductID = @ProductID", conn))
+                        "SELECT ProductName, Price, CAST(ProductType AS NVARCHAR(100)) AS ProductType, CAST(ImageURL AS NVARCHAR(300)) AS ImageUrl FROM PRODUCTS WHERE ProductID = @ProductID", conn))
                     {
                         cmd.Parameters.AddWithValue("@ProductID", kv.Key);
                         using (var r = cmd.ExecuteReader())
@@ -55,6 +55,8 @@ namespace SueTheChef
                             {
                                 ProductId = kv.Key,
                                 ProductName = Convert.ToString(r["ProductName"]),
+                                ProductType = r["ProductType"] == DBNull.Value ? "" : Convert.ToString(r["ProductType"]),
+                                ImageUrl = r["ImageUrl"] == DBNull.Value ? "" : Convert.ToString(r["ImageUrl"]),
                                 UnitPrice = Convert.ToDecimal(r["Price"]),
                                 Quantity = kv.Value
                             });
@@ -73,6 +75,27 @@ namespace SueTheChef
             pnlEmpty.Visible = empty;
             divCartFooter.Visible = !empty;
             rptCart.Visible = !empty;
+        }
+
+        public string GetProductImageUrl(object imageUrlObj, object typeObj)
+        {
+            string imageUrl = Convert.ToString(imageUrlObj);
+            if (!string.IsNullOrWhiteSpace(imageUrl))
+            {
+                imageUrl = imageUrl.Trim();
+                if (imageUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                    || imageUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                    return imageUrl;
+                if (imageUrl.StartsWith("~/", StringComparison.Ordinal))
+                    return ResolveUrl(imageUrl);
+                if (imageUrl.StartsWith("/", StringComparison.Ordinal))
+                    return imageUrl;
+                return ResolveUrl("~/" + imageUrl.TrimStart('/'));
+            }
+
+            string type = Convert.ToString(typeObj);
+            bool isWheel = type != null && type.IndexOf("wheel", StringComparison.OrdinalIgnoreCase) >= 0;
+            return ResolveUrl(isWheel ? "~/Images/wheel-placeholder.svg" : "~/Images/tire-placeholder.svg");
         }
     }
 }
